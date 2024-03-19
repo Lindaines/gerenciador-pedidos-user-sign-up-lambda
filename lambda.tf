@@ -12,7 +12,7 @@ resource "aws_s3_object" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_execution_role_signup_cognito"
+  name = "lambda_execution_role_signup_cognito"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -25,12 +25,11 @@ resource "aws_iam_role" "lambda_role" {
       "Action": "sts:AssumeRole"
     },
      {
-        "Sid": "Cognito",
         "Effect": "Allow",
-        "Action": [
-            "cognito-idp:*"
-        ],
-        "Resource": "arn:aws:cognito-idp:us-east-1:975049969291:userpool/us-east-1_QyvJEcO3L"
+        "Principal": {
+          "Service": "cognito-idp.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
     }
   ]
 }
@@ -42,7 +41,7 @@ resource "aws_lambda_function" "cognito_lambda" {
   function_name    = "cognitoSignUpLambda"
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.8"
-  filename         = "${path.module}/zip/api.zip" // Path to your Lambda code ZIP file
+  filename         = "${path.module}/zip/api.zip"
 
 
 
