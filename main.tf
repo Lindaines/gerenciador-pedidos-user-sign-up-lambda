@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "api-gateway-lambda-gerenciador-pedidos-fiap"
-    region = "us-east-1"
+    bucket = var.aws_s3_bucket
+    region = var.aws_region
     key    = "terraform.tfstate"
   }
 }
