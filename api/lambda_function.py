@@ -2,8 +2,12 @@ import boto3
 import json
 
 
+import boto3
+import json
+
+
 def lambda_handler(event, context):
-    request_body = event.get('input').get('body')
+    request_body = event.get('body')
     username = json.loads(request_body).get('username')
     email = json.loads(request_body).get('email')
     aws_client = boto3.client('cognito-idp', region_name="us-east-1")
@@ -15,5 +19,7 @@ def lambda_handler(event, context):
             {"Name": "email", "Value": email},
         ],
     )
-    return response
+    return {"message" : f"user created: {username}"}
+
+
 
