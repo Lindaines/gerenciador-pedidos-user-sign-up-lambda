@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = var.aws_s3_bucket
-    region = var.aws_region
+    bucket = "gerenciador-pedidos-user-sign-up-lambda"
+    region = "us-east-1"
     key    = "terraform.tfstate"
   }
 }
