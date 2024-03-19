@@ -23,6 +23,14 @@ resource "aws_iam_role" "lambda_role" {
         "Service": "lambda.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
+    },
+     {
+        "Sid": "Cognito",
+        "Effect": "Allow",
+        "Action": [
+            "cognito-idp:*"
+        ],
+        "Resource": "arn:aws:cognito-idp:us-east-1:975049969291:userpool/us-east-1_QyvJEcO3L"
     }
   ]
 }
@@ -52,6 +60,6 @@ resource "aws_lambda_function" "cognito_lambda" {
 }
 
 resource "aws_cloudwatch_log_group" "cloudwatch" {
-  name              = "/aws/lambda/cognitoValidationFunction"
+  name = "/aws/lambda/cognitoSignUpLambda"
   retention_in_days = 1
 }
