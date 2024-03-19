@@ -12,7 +12,7 @@ resource "aws_s3_object" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_execution_role"
+  name               = "lambda_execution_role_signup_cognito"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
