@@ -31,7 +31,7 @@ EOF
 }
 
 resource "aws_lambda_function" "cognito_lambda" {
-  function_name    = "cognitoValidationFunction"
+  function_name    = "cognitoSignUpLambda"
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.8"
   filename         = "${path.module}/zip/api.zip" // Path to your Lambda code ZIP file
