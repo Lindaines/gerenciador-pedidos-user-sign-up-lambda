@@ -36,12 +36,6 @@ resource "aws_lambda_function" "cognito_lambda" {
   runtime          = "python3.8"
   filename         = "${path.module}/zip/api.zip" // Path to your Lambda code ZIP file
 
-
-  environment {
-    variables = {
-      jwtSecret = var.jwtSecret,
-      cognitoUserPoolId = var.aws_cognito_pool_user_id
-    }
   }
 
 
